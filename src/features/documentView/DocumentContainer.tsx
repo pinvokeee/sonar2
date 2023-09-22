@@ -1,7 +1,7 @@
 import { styled } from "@mui/material";
 import { useDocumentAction, useGetDocumentPageAction } from "./documentState";
 import LexEditor from "../../components/lexEditor/LexEditor";
-import MonacoEditor from "../../components/monacoEditor/MonacoEditor";
+import { MonaEditor } from "../../components/monacoEditor/MonacoEditor";
 
 const DocumentView = styled("iframe")(({theme}) => (
     {
@@ -31,7 +31,7 @@ export default function DocumentContainer() {
 
         if (page.contentType == "html") {
             return <>
-                <MonacoEditor></MonacoEditor>
+                <MonaEditor></MonaEditor>
             </>
         }
 

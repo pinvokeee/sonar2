@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monaco Editor Demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/monaco-editor@0.40.0/min/vs/editor/editor.main.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <h2>Monaco Editor LaTeX</h2>
+    <div
+      id="container"
+      style="width: 100%; height: 600px; border: 1px solid lightgray"
+    ></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.40.0/min/vs/loader.min.js"></script>
+
+    <script>
+
+      require.config({
+        paths: {
+          vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.40.0/min/vs",
+        },
+      });
+
+      require(["vs/editor/editor.main"], function () {
+        // Register a new language
+        // monaco.languages.register({ id: "latex" });
+
+        // // Register a tokens provider for the language
+        // monaco.languages.setMonarchTokensProvider("latex", {
+        //   tokenizer: {
+        //     root: [
+        //       [/(\\[a-zA-Z]+)/, "command"], // LaTeX commands
+        //       [/(\\[\w\u3000-\u9FFF]+)/, "note"], // LaTeX commands
+        //       [/(\{)/, "brace"],
+        //       [/(\})/, "brace"],
+        //       [/(\[)/, "bracket"],
+        //       [/(\])/, "bracket"],
+        //       [/(document|dvips)/, "keyword"], // LaTeX keywords
+        //       [/(%.*)/, "comment"], // Comments
+        //     ],
+        //   },
+        // });
+
+        // // Define a new theme that contains only rules that match this language
+        // monaco.editor.defineTheme("myTheme", {
+        //   base: "vs",
+        //   inherit: true,
+        //   rules: [
+        //     { token: "command", foreground: "#F44336" }, // LaTeX commands in red
+        //     { token: "note", foreground: "#2196F3" }, // Notes in blue
+        //     { token: "brace", foreground: "FF00FF" }, // Braces in magenta
+        //     { token: "bracket", foreground: "00FFFF" }, // Brackets in cyan
+        //     { token: "keyword", foreground: "#4CAF50" }, // Keywords in green
+        //     { token: "comment", foreground: "#9E9E9E" }, // Comments in gray
+        //   ],
+        //   colors: {},
+        // });
+
+        monaco.editor.create(document.getElementById("container"), {
+          value: getCode(),
+          language: "javascript",
+          theme: "myTheme",
+          wordWrap: false,
+        });
+      });
+
+      function getCode() {
+        return `\\documentclass{tbook}
+
+\\usepackage{hiragino,cid}
+\\usepackage[dvips]{graphics}
+\\usepackage{font}
+% \\見開き
+
+\\begin{document}
+
+テキスト
+
+\\書名{（サンプル）}テキスト
+
+長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト長いテキスト\\右注{（あああ）}長いテキスト長いテキスト
+
+\\右注{（サンプル）}テキスト
+
+\\end{document}`;
+      }
+    </script>
+  </body>
+</html>
